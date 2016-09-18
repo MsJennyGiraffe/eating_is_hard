@@ -16,6 +16,21 @@ end
 
 # Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
+OmniAuth.config.test_mode = true
+OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
+  provider: 'facebook',
+  uid: 1,
+    info: {
+      name: "Jenny",
+      image: "http://graph.facebook.com/v2.6/10154099646812408/picture",
+      email: "test@test.com",
+    },
+  credentials: {
+    token: ENV["FACEBOOK_KEY"],
+    secret: ENV["FACEBOOK_SECRET"]
+  }
+})
+
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
