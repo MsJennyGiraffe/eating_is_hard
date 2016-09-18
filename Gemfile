@@ -16,6 +16,9 @@ gem 'figaro'
 
 group :test do
   gem 'simplecov'
+  gem 'vcr'
+  gem 'webmock'
+  gem 'capybara'
 end
 
 group :development, :test do
