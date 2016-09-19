@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  has_many :likes
+  has_many :ingredients, through: :likes
+
   def self.from_omniauth(auth_info)
     where(uid: auth_info[:uid]).first_or_create do |new_user|
       new_user.name  = auth_info.info.name

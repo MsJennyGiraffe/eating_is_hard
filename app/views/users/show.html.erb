@@ -2,28 +2,31 @@
   <div class="well col-md-10 col-md-offset-1">
     <div class="col-md-8 col-md-offset-2">
       <h1 class="text-center"><%= @user.name %><h1>
-    </div>
-
-    <div class="col-md-12">
-      <div class="col-md-4">
-        <%= image_tag @user.image, class: "img-resize img-circle" %>
-        <h4><%= @user.email %></h4>
       </div>
 
-      <div class="col-md-4">
-        <h3>Favorite Recipes:</h3>
+      <div class="col-md-12">
+        <div class="col-md-4">
+          <%= image_tag @user.image, class: "img-resize img-circle" %>
+          <h4><%= @user.email %></h4>
+        </div>
+
+        <div class="col-md-4">
+          <h3>Favorite Recipes:</h3>
+        </div>
+
+        <div class="col-md-4">
+          <h4>Likes:</h4>
+
+          <% @user.likes.each do |like| %>
+          <h5><%= like.ingredient.name %></h5>
+          <% end %>
+
+          <%= link_to "Add Likes", user_preferences_path(current_user), class: "btn btn-info" %>
+
+          <h4>Dislikes:</h4>
+
+          <%= link_to "Add Dislikes", user_preferences_path(current_user), class: "btn btn-info" %>
+        </div>
       </div>
-
-      <div class="col-md-4">
-        <h4>Likes:</h4>
-
-        <%= link_to "Add likes" %>
-        
-        <h4>Dislikes:</h4>
-
-        <%= link_to "Add dislikes" %>
-
     </div>
   </div>
-</div>
-</div>
