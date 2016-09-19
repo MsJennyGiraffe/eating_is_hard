@@ -10,3 +10,7 @@ body {
   height: auto;
   width: 200px;
 }
+
+.button-padding {
+  padding-bottom: 20px;
+}

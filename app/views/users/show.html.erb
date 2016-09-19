@@ -15,19 +15,30 @@
         </div>
 
         <div class="col-md-4">
+
+          <div class="col-md-12 button-padding">
+            <%= link_to "Add Likes/Dislikes", user_preferences_path(current_user), class: "btn btn-info btn-block button-padding" %>
+          </div>
+
           <h4>Likes:</h4>
 
-          <% @user.likes.each do |like| %>
-          <div class="col-md-6">
-            <h5><%= like.ingredient.name %></h5>
+          <div class="col-md-12">
+            <% @user.likes.each do |like| %>
+            <div class="col-md-6">
+              <h5><%= like.ingredient.name %></h5>
+            </div>
+            <% end %>
           </div>
-          <% end %>
-
-          <%= link_to "Add Likes", user_preferences_path(current_user), class: "btn btn-info" %>
 
           <h4>Dislikes:</h4>
 
-          <%= link_to "Add Dislikes", user_preferences_path(current_user), class: "btn btn-info" %>
+          <div class="col-md-12">
+            <% @user.dislikes.each do |dislike| %>
+            <div class="col-md-6">
+              <h5><%= dislike.ingredient.name %></h5>
+            </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
