@@ -1,26 +1,58 @@
 <div class="container">
-Likes:
 
-<% if @user.likes %>
-  <% @user.likes.each do |like| %>
-    <div class="likes"><%= like.ingredient.name %></div>
-  <% end %>
-  <% else %>
-    None
-<% end %>
-
-Dislikes:
-
-<h3>---</h3>
-
-Add Likes:
-<div class="dropdown">
-  <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" name="quantity">Ingredients
-    <span class="caret"></span></button>
-    <ul class="dropdown-menu scrollable-menu">
-      <% @ingredients.each do |ingredient| %>
-      <li class="text-center"><%= link_to ingredient.name, user_preferences_path(user_id: current_user.id, ingredient: ingredient, method: :post)%></li>
+  <div class="well col-md-12">
+    <div class="col-md-8">
+      <h2>Likes</h2>
+      <% if @user.likes %>
+      <% @user.likes.each do |like| %>
+      <div class="col-md-6">
+        <h4 class="likes"><%= like.ingredient.name %></h4>
+      </div>
       <% end %>
-    </ul>
-  </div>
-</div>
+      <% else %>
+      None
+      <% end %>
+    </div>
+
+    <div class="col-md-4">
+      <br>
+      <div class="dropdown add-like">
+        <button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown" name="quantity">Add Ingredients to Like
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu scrollable-menu">
+            <% @ingredients.each do |ingredient| %>
+            <li class="text-center"><%= link_to ingredient.name, user_preferences_path(user_id: current_user.id, ingredient: ingredient, like: true, method: :post)%></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="well col-md-12">
+      <div class="col-md-8">
+        <h2>Dislikes</h2>
+        <% if @user.dislikes %>
+        <% @user.dislikes.each do |dislike| %>
+        <div class="col-md-6">
+          <h4 class="dislikes"><%= dislike.ingredient.name %></h4>
+        </div>
+        <% end %>
+        <% else %>
+        None
+        <% end %>
+      </div>
+
+      <div class="col-md-4">
+        <br>
+        <div class="dropdown add-dislike">
+          <button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown" name="quantity">Add Ingredients to Dislike
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu scrollable-menu">
+              <% @ingredients.each do |ingredient| %>
+              <li class="text-center"><%= link_to ingredient.name, user_preferences_path(user_id: current_user.id, ingredient: ingredient, like: false, method: :post)%></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
