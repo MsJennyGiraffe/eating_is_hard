@@ -8,8 +8,8 @@ RSpec.feature "user can view their profile" do
 
     expect(page).to have_content("Jenny")
     expect(page).to have_content("test@test.com")
-    expect(page).to have_content("Add likes")
-    expect(page).to have_content("Add dislikes")
+    expect(page).to have_content("Add Likes")
+    expect(page).to have_content("Add Dislikes")
     expect(page).to have_content("Favorite Recipes")
   end
 end

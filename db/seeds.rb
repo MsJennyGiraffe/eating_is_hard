@@ -5,3 +5,21 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+class Seed
+  def initialize
+    add_ingredients
+  end
+
+  def add_ingredients
+    ingredients = ["Chicken", "Shrimp", "Salmon", "Beef", "Corn", "Onion"]
+    ingredients.each do |ingredient|
+      Ingredient.create(
+      name: ingredient
+      )
+    end
+    puts "Ingredients Created!"
+  end
+end
+
+Seed.new

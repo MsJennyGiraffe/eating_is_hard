@@ -13,6 +13,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 gem 'omniauth-facebook'
 gem 'figaro'
+gem 'faker', '~> 1.6.6'
 
 group :test do
   gem 'simplecov'
