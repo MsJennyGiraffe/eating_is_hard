@@ -18,7 +18,9 @@
           <h4>Likes:</h4>
 
           <% @user.likes.each do |like| %>
-          <h5><%= like.ingredient.name %></h5>
+          <div class="col-md-6">
+            <h5><%= like.ingredient.name %></h5>
+          </div>
           <% end %>
 
           <%= link_to "Add Likes", user_preferences_path(current_user), class: "btn btn-info" %>

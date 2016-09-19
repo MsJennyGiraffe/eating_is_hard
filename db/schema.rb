@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160918235730) do
+ActiveRecord::Schema.define(version: 20160919013008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "dislikes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "ingredient_id"
+    t.index ["ingredient_id"], name: "index_dislikes_on_ingredient_id", using: :btree
+    t.index ["user_id"], name: "index_dislikes_on_user_id", using: :btree
+  end
 
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
@@ -33,6 +40,8 @@ ActiveRecord::Schema.define(version: 20160918235730) do
     t.string "image"
   end
 
+  add_foreign_key "dislikes", "ingredients"
+  add_foreign_key "dislikes", "users"
   add_foreign_key "likes", "ingredients"
   add_foreign_key "likes", "users"
 end
