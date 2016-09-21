@@ -3,13 +3,18 @@ class Food2forkService
     @conn = Faraday.new("http://food2fork.com/api/")
   end
 
-  def get_recipe(count)
-    response = @conn.get("search?key=#{ENV['FOOD2FORK_KEY']}&count=#{count}")
-    JSON.parse(response.body)
-  end
-
   def get_recipe_by_page(page)
     response = @conn.get("search?key=#{ENV['FOOD2FORK_KEY']}&page=#{page}")
-    JSON.parse(response.body)
+    parse(response.body)
   end
+
+  def get_liked_food_recipe(ingredient)
+    response = @conn.get("search?key=#{ENV['FOOD2FORK_KEY']}&q=shrimp")
+    parse(response.body)["recipes"]
+  end
+
+  private
+    def parse(response)
+      JSON.parse(response)
+    end
 end

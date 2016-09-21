@@ -8,7 +8,7 @@ RSpec.feature "user can like food" do
     visit "/"
     click_link "Login with Facebook"
     click_link "Profile"
-    click_link "Add Likes"
+    click_link "Add Likes/Dislikes"
 
     expect(page).to_not have_css(".likes")
 
