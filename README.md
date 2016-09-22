@@ -1,24 +1,27 @@
-# README
+# Eating is Hard
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Clone project
+```
+https://github.com/MsJennyGiraffe/eating_is_hard
+```
+CD into project directory
+```
+cd eating_is_hard
+```
+bundle
+```
+bundle
+```
+Be sure to migrate!
+```
+rails db:migrate
+```
+Then setup the project
+```
+rails db:setup
+```
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+To run test suite
+```
+rspec
+```
