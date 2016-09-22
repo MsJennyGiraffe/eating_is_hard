@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Recipe do
+describe Dislike do
   context "add_ingredient" do
     it "adds an ingredient to a users dislikes" do
       user = User.create(name: "Francis")
