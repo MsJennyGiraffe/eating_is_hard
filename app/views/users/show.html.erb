@@ -12,6 +12,15 @@
 
         <div class="col-md-4">
           <h3>Favorite Recipes:</h3>
+          <div class="favorites">
+              <% if @user.favorites %>
+                <% @user.favorites.each do |favorite| %>
+                <div class="recipe">
+                  <%= link_to favorite.saved_recipe.name, favorite.saved_recipe.url %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
         </div>
 
         <div class="col-md-4">

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160919013008) do
+ActiveRecord::Schema.define(version: 20160922021253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,13 @@ ActiveRecord::Schema.define(version: 20160919013008) do
     t.integer "ingredient_id"
     t.index ["ingredient_id"], name: "index_dislikes_on_ingredient_id", using: :btree
     t.index ["user_id"], name: "index_dislikes_on_user_id", using: :btree
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "saved_recipe_id"
+    t.index ["saved_recipe_id"], name: "index_favorites_on_saved_recipe_id", using: :btree
+    t.index ["user_id"], name: "index_favorites_on_user_id", using: :btree
   end
 
   create_table "ingredients", force: :cascade do |t|
@@ -33,6 +40,12 @@ ActiveRecord::Schema.define(version: 20160919013008) do
     t.index ["user_id"], name: "index_likes_on_user_id", using: :btree
   end
 
+  create_table "saved_recipes", force: :cascade do |t|
+    t.string "url"
+    t.string "name"
+    t.string "f2f_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.bigint "uid"
@@ -42,6 +55,8 @@ ActiveRecord::Schema.define(version: 20160919013008) do
 
   add_foreign_key "dislikes", "ingredients"
   add_foreign_key "dislikes", "users"
+  add_foreign_key "favorites", "saved_recipes"
+  add_foreign_key "favorites", "users"
   add_foreign_key "likes", "ingredients"
   add_foreign_key "likes", "users"
 end

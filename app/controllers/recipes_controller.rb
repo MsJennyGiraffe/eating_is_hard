@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   def index
-    if current_user && current_user.likes && params[:quantity]
+    if current_user && !current_user.likes.empty? && params[:quantity]
       @recipes = Recipe.user_likes(current_user.likes, params[:quantity])
     else
       @recipes = Recipe.random(params[:quantity])
