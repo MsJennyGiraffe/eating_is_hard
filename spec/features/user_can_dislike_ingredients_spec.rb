@@ -8,7 +8,7 @@ RSpec.feature "user can dislike food" do
     visit "/"
     click_link "Login with Facebook"
     click_link "Profile"
-    click_link "Add Dislikes"
+    click_link "Add Likes/Dislikes"
 
     expect(page).to_not have_css(".dislikes")
 
@@ -30,7 +30,7 @@ RSpec.feature "user can dislike food" do
     visit "/"
     click_link "Login with Facebook"
     click_link "Profile"
-    click_link "Add Dislikes"
+    click_link "Add Likes/Dislikes"
 
     expect(page).to_not have_css(".dislikes")
 
