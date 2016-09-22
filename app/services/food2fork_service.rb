@@ -9,7 +9,7 @@ class Food2forkService
   end
 
   def get_liked_food_recipe(ingredient)
-    response = @conn.get("search?key=#{ENV['FOOD2FORK_KEY']}&q=shrimp")
+    response = @conn.get("search?key=#{ENV['FOOD2FORK_KEY']}&q=#{ingredient}")
     parse(response.body)["recipes"]
   end
 

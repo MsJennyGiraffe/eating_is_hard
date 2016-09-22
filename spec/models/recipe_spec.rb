@@ -24,4 +24,23 @@ describe Recipe do
       expect(page.between?(1,300)).to be(true)
     end
   end
+
+  context "all" do
+    it "returns all recipes" do
+      recipe = Recipe.all( [{
+        "title" => "Grilled Shrimp",
+        "source_url" => "www.shrimp.com",
+        "f2f_url" => "www.f2fshrimp.com",
+        "recipe_id" => "1",
+        "image_url" => "shrimp.jpg",
+      }], "shrimp" )
+
+      expect(recipe.first.title).to eq("Grilled Shrimp")
+      expect(recipe.first.source_url).to eq("www.shrimp.com")
+      expect(recipe.first.f2f_url).to eq("www.f2fshrimp.com")
+      expect(recipe.first.recipe_id).to eq("1")
+      expect(recipe.first.image_url).to eq("shrimp.jpg")
+      expect(recipe.first.recommended).to eq("shrimp")
+    end
+  end
 end

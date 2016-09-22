@@ -14,3 +14,11 @@ body {
 .button-padding {
   padding-bottom: 20px;
 }
+
+.recipe-well {
+  min-height: 500px !important;
+}
+
+.img-max-height {
+  max-height: 350px;
+}

@@ -1,12 +1,18 @@
 class Recipe
-  attr_reader :title, :source_url, :f2f_url, :recipe_id, :image_url
+  attr_reader :title,
+              :source_url,
+              :f2f_url,
+              :recipe_id,
+              :image_url,
+              :recommended
 
-  def initialize(title, source_url, f2f_url,recipe_id, image_url)
-    @title = title
-    @source_url = source_url
-    @f2f_url = f2f_url
-    @recipe_id = recipe_id
-    @image_url = image_url
+  def initialize(title, source_url, f2f_url,recipe_id, image_url, recommended)
+    @title       = title
+    @source_url  = source_url
+    @f2f_url     = f2f_url
+    @recipe_id   = recipe_id
+    @image_url   = image_url
+    @recommended = recommended
   end
 
   def self.random_page
@@ -25,21 +31,24 @@ class Recipe
     ingredient_recipe = Food2forkService.new.get_liked_food_recipe(ingredient)
     if (quantity.to_i - 1) > 0
       recipes = Recipe.random(quantity.to_i - 1)
-      recipes << ingredient_recipe
+      recipe = [ingredient_recipe.sample]
+      recipe = Recipe.all(recipe, ingredient)
+      recipes << recipe.first
     else
-      recipes = [ingredient_recipe.sample]
+      recipe = [ingredient_recipe.sample]
+      Recipe.all(recipe, ingredient)
     end
-    Recipe.all(recipes)
   end
 
-  def self.all(recipes)
+  def self.all(recipes, ingredient = nil)
     recipes.map do |recipe|
       Recipe.new(
         recipe["title"],
         recipe["source_url"],
         recipe["f2f_url"],
         recipe["recipe_id"],
-        recipe["image_url"]
+        recipe["image_url"],
+        ingredient
       )
     end
   end
