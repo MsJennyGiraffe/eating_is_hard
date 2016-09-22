@@ -1,20 +1,20 @@
 <div class="container">
   <div class="well col-md-2 col-md-offset-5">
     <div class="col-md-2 col-md-offset-1">
-    <div class="dropdown">
-      <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" name="quantity">Quantity
-        <span class="caret"></span></button>
-        <ul class="dropdown-menu scrollable-menu">
-          <% (1..30).each do |quantity| %>
-          <li class="text-center"><%= link_to quantity, recipes_path(quantity: quantity, method: :post)%></li>
-          <% end %>
-        </ul>
+      <div class="dropdown">
+        <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" name="quantity">Quantity
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu scrollable-menu">
+            <% (1..30).each do |quantity| %>
+            <li class="text-center"><%= link_to quantity, recipes_path(quantity: quantity, method: :post)%></li>
+            <% end %>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="col-md-12">
-  </div>
+    <div class="col-md-12">
+    </div>
 
     <% @recipes.each do |recipe| %>
     <div class="col-md-4">
@@ -22,8 +22,11 @@
         <div class="recipe">
           <%= image_tag recipe.image_url, class: "img-responsive img-max-height" %>
           <h3 class="text-center"><%= link_to recipe.title, recipe.source_url %></h3>
+          <% if current_user %>
+            <%= link_to "Favorite Recipe", user_favorites_path(current_user, recipe_name: recipe.title, url: recipe.source_url, f2f_id: recipe.recipe_id) %>
+          <% end %>
           <% if recipe.recommended %>
-            <h4 class="text-center">Recommended because you said you liked: <%= recipe.recommended %></h4>
+          <h4 class="text-center">Recommended because you said you liked: <%= recipe.recommended %></h4>
           <% end %>
         </div>
       </div>

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :recipes, only: [:index]
   resources :users, only: [:show] do
     resources :preferences, only: [:index]
+    resources :favorites, only: [:index]
   end
 
   get '/auth/facebook', as: :facebook_login
